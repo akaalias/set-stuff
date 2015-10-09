@@ -4,6 +4,7 @@
          '[clojure.edn :as edn]
          '[clojure.set :as set])
 
+;; File format: (1 2 3 ...)
 (defn read-file [f]
   (->> f
        io/resource 
