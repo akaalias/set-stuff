@@ -1,14 +1,3 @@
-# set-stuff
+# Get the intersection of two large sets of numbers
 
-A Clojure library designed to ... well, that part is up to you.
-
-## Usage
-
-FIXME
-
-## License
-
-Copyright © 2015 FIXME
-
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+I quickly needed to get the intersection of the contents of two files. It took me, including lein and emacs setup, all of 5 minutes to come to a simple solution. No variables, no loops, all standard functions.
