@@ -12,7 +12,9 @@
        edn/read-string))
 
 (defn intersection-files [a b]
-  (let [file-a-contents (read-file a)
-        file-b-contents (read-file b)]
-    (set/intersection (set file-a-contents)
-                      (set file-b-contents))))
+  (try 
+    (let [file-a-contents (read-file a)
+          file-b-contents (read-file b)]
+      (set/intersection (set file-a-contents)
+                        (set file-b-contents)))
+    (catch IllegalArgumentException e #{})))
