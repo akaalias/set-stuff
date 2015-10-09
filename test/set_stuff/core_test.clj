@@ -2,6 +2,12 @@
   (:require [clojure.test :refer :all]
             [set-stuff.core :refer :all]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(deftest test-intersection-of-files
+  (testing "It returns the set"
+      (is (= #{1 2 3} (intersection-files "sample.txt" "sample.txt")))))
+
+(deftest test-read-file
+  (testing "It reads the file into a seq"
+    (is (= '(1 2 3) (read-file "sample.txt")))))
+
+

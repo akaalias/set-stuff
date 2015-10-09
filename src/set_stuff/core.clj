@@ -4,17 +4,14 @@
          '[clojure.edn :as edn]
          '[clojure.set :as set])
 
-(def my-ids (->> "my-ids.txt" 
-                 io/resource slurp 
-                 edn/read-string 
-                 set))
+(defn read-file [f]
+  (->> f
+       io/resource 
+       slurp 
+       edn/read-string))
 
-(def found-ids (->> "found-ids.txt" 
-                    io/resource 
-                    slurp 
-                    edn/read-string 
-                    set))
-
-(def my-intersection (set/intersection my-ids 
-                                       found-ids))
- 
+(defn intersection-files [a b]
+  (let [file-a-contents (read-file a)
+        file-b-contents (read-file b)]
+    (set/intersection (set file-a-contents)
+                      (set file-b-contents))))
