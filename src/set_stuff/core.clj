@@ -4,17 +4,19 @@
          '[clojure.edn :as edn]
          '[clojure.set :as set])
 
-;; File format: (1 2 3 ...)
 (defn read-file [f]
-  (->> f
-       io/resource 
-       slurp 
-       edn/read-string))
+  (try 
+    (->> f
+         io/resource 
+         slurp 
+         edn/read-string)
+    (catch IllegalArgumentException e ())))
 
 (defn intersection-files [a b]
-  (try 
-    (let [file-a-contents (read-file a)
-          file-b-contents (read-file b)]
-      (set/intersection (set file-a-contents)
-                        (set file-b-contents)))
-    (catch IllegalArgumentException e #{})))
+  (let [file-a-contents (read-file a)
+        file-b-contents (read-file b)]
+    (set/intersection (set file-a-contents)
+                      (set file-b-contents))))
+
+(defn count-file-contents [file-name]
+  (count (read-file file-name)))
